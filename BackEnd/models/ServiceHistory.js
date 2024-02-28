@@ -10,12 +10,22 @@ const ServiceHistorySchema = new mongoose.Schema({
     ref: "Employee",
   },
   service: {
-    serviceType: { type: String, required: true },
-    bookingDate: { type: Date, required: true },
-    serviceDate: { type: Date, required: true },
-    serviceStatus: { type: String, required: true },
-    description: { type: String, required: false },
+    name : { type: String, required: true },
+    email : { type: String, required: true },
+    serviceName : { type: String, required: true },
+    date : { type: Date, required: true },
+    address : { type: String, required: true },
+    city : { type: String, required: true },
+    note : { type: String, required: false },
+    phone : { type: String, required: true },
+    serviceDesc : { type: String, required: true },
 
+    serviceStatus: { type: String, default: "Pending"},
     rating: { type: Number },
   },
 });
+
+
+
+const ServiceHistory = mongoose.model("ServiceHistory", ServiceHistorySchema);
+module.exports = ServiceHistory;

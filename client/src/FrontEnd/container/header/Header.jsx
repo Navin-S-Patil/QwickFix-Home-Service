@@ -18,14 +18,14 @@ export const Header = () => {
   return (
     <div className={headerStyles.container}>
       <div className={headerStyles.title}>
-        <h1>Services at the Doorstep</h1>
+        <h1>Service at your Doorstep</h1>
         <h5 className={headerStyles.maroonColor}>We Focus on Customer Satisfaction</h5>
       </div>
 
       <div className={headerStyles.inputBoxes}>
         <div className={headerStyles.gradient}></div>
         <SearchBar
-          placeholder="Search the Location"
+          placeholder="Enter your Location"
           name="location"
           data={Cities}
         />

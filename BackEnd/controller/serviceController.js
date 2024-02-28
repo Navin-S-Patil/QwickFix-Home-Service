@@ -1,0 +1,38 @@
+const asyncHandler = require("express-async-handler");
+const ServiceHistory = require("../models/ServiceHistory");
+const User = require("../models/User");
+
+//@desc    Book a Service req by user
+//route    POST /api/service/bookService
+//@access  Public
+const bookService = asyncHandler(async (req, res) => {
+
+    const { fullName, email, serviceName, serviceDate, address, city, note, phoneNumber, serviceDesc } = req.body;
+
+    const user = User.findOne(email);
+
+    const service = await ServiceHistory.create({
+        user: user._id,
+        service: {
+            name: fullName,
+            email,
+            serviceName,
+            date: serviceDate,
+            address,
+            city,
+            note,
+            phone: phoneNumber,
+            serviceDesc
+        }
+    });
+
+    if(service){
+        return res.status(201).json({message : "Success"})
+    }
+
+
+});
+
+
+
+module.exports = { bookService };

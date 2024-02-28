@@ -6,6 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const userRoute = require("./routes/userRoute");
+const serviceRoute = require("./routes/serviceRoute");
 
 const corsOptions ={
   origin:'http://localhost:3000', 
@@ -28,7 +29,9 @@ mongoose
   });
 
 
+app.use("/api/service", serviceRoute);
 app.use("/api/users", userRoute);
+
 
 //custom error handler
 app.use(notFound);
