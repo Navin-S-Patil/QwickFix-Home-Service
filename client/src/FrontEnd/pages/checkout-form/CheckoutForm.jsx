@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "../../api/axios";
 import { useState } from "react";
 
-const CHECKOUT_FORM_URL = "/createCheckout";
+const CHECKOUT_FORM_URL = "http://localhost:5000/api/service/bookService";
 
 const CheckoutForm = () => {
   const { category } = useParams();
@@ -27,15 +27,20 @@ const CheckoutForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(values);
+    // console.log(values);
     e.preventDefault();
+
+    const userEmail = JSON.parse(localStorage.response).email;
+    // console.log(userEmail);
+
+    console.log();
 
     try {
       const response = await axios.post(
         CHECKOUT_FORM_URL,
         JSON.stringify({
           fullName: values.fullName,
-          email: values.email,
+          email: userEmail,
           serviceName: category,
           serviceDate: values.serviceDate,
           address: values.address,
@@ -43,18 +48,15 @@ const CheckoutForm = () => {
           note: values.note,
           phoneNumber: values.phoneNumber,
           serviceDesc: service,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
+        }),{
+          headers: {
+            "Content-Type": "application/json",
+          },
           withCredentials: true,
         }
       );
 
-      window.open(`${response.data.url}`);
-
-      console.log(JSON.stringify(response));
-
-      console.log(response);
+      console.log(response.data);
     } catch (err) {
       if (!err?.response) {
         console.log("No Server Response");
@@ -63,7 +65,8 @@ const CheckoutForm = () => {
       } else if (err.response?.status === 401) {
         console.log("Unauthorized");
       } else {
-        console.log("something else is wrong");
+        console.log("something else is wrong ");
+        console.log(err.response.data);
       }
     }
   };
@@ -96,16 +99,7 @@ const CheckoutForm = () => {
                     required
                   />
                 </div>
-                <div className={styles["input-box"]}>
-                  <span className={styles.details}>Email</span>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    onChange={onChange}
-                    required
-                  />
-                </div>
+                
                 <div className={styles["input-box"]}>
                   <span className={styles.details}>Service Date</span>
                   <input

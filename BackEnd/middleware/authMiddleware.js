@@ -4,9 +4,11 @@ const User = require("../models/User");
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-  // console.log(req.cookies);
-  // console.log(req.headers.cookie);
-  token = req.headers.cookie.split("=")[1];
+ 
+  const cookie = req.headers.cookie.split("jwt=")[1];
+  
+
+  token = cookie;
 
   if (token) {
     try {
