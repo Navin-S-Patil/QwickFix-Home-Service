@@ -4,7 +4,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../../assets/icons/logo2.png";
 import navbarStyles from "./navbar.module.css";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 // import axios from "../../api/axios";
 // import { useContext } from "react";
@@ -53,13 +53,23 @@ export const Navbar = () => {
           <p>
             <Link to="/RegisterAsProfessional">Register As Professional</Link>
           </p>
-          <p>
-            {data.role === "admin" ? (
-              <Link to="/admin-dashboard">Admin Dashboard</Link>
-            ) : data.role === "professional" ? (
-              <Link to="/under-construction">Professional Dashboard</Link>
-            ) : (
-              <Link to="/under-construction">User Dashboard</Link>
+          <p className={data.role ? null : navbarStyles.hiddenLink}>
+            {data && (
+              <Link to="/dashboard" className={data.role ? null : navbarStyles.hiddenLink}>
+                {(() => {
+                  switch (data.role) {
+                    case "admin":
+                      return "Admin Dashboard";
+                    case "professional":
+                      return "Professional Dashboard";
+                    case "Customer":
+                      return "User Dashboard";
+                    default:
+                      return null;
+                  }
+                })()}
+              </Link>
+
             )}
           </p>
           <p>

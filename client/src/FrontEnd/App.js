@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
@@ -44,8 +44,22 @@ import Error from './pages/Error Page/Error';
 import UnderConstruction from './pages/under-construction/UnderConstruction';
 import Success from './pages/Success/Success';
 
+import UserDashboard from './pages/user-dashboard/userDashboard';
+
+
 
 function App() {
+
+  const [data, setData] = useState({});
+
+  // Data is passed in local storage from sign in form
+  useEffect(() => {
+    const response = localStorage.getItem("response");
+    if (response) {
+      setData(JSON.parse(response));
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -117,40 +131,20 @@ function App() {
         <Route path="/categories/painter/primer_painting" element={<PrimerPainting />} />
         <Route path="/categories/painter/decorative_wall_painting" element={<DecorativeWallPainting />} />
 
-        {/* <Route path="/categories/house_cleaning/pest_control" element={<PestControl />} />
-        <Route path="/categories/house_cleaning/house_deep_cleaning" element={<HouseDeepCleaning />} />
-        <Route path="/categories/house_cleaning/kitchen_deep_cleaning" element={<KitchenDeepCleaning />} />
-        <Route path="/categories/house_cleaning/carpet_cleaning" element={<CarpetCleaning />} />
-        <Route path="/categories/house_cleaning/house_painting" element={<HousePainting />} />
-        <Route path="/categories/house_cleaning/dust_cleaning" element={<DustCleaning />} />
-        <Route path="/categories/house_cleaning/bathroom_cleaning" element={<BathroomCleaning />} />
-        <Route path="/categories/house_cleaning/furniture_cleaning" element={<FurnitureCleaning />} />
-        <Route path="/categories/house_cleaning/sweeping_and_mopping" element={<SweepingAndMopping />} />
-
-        <Route path="/categories/beauty_and_spa/makeup_and_face_care" element={<MakeupAndFaceCare />} />
-        <Route path="/categories/beauty_and_spa/hairstyling_for_women" element={<HairStylingForWomen />} />
-        <Route path="/categories/beauty_and_spa/massage_and_therapy" element={<MassageAndTherapy />} />
-        <Route path="/categories/beauty_and_spa/hair_salon_for_men" element={<HairSalonForMen />} />
-        <Route path="/categories/beauty_and_spa/skin_care" element={<SkinCare />} />
-
-        <Route path="/categories/business/ca_for_business" element={<CAForBusiness />} />
-        <Route path="/categories/business/business_consultancy" element={<BusinessConsultancy />} />
-        <Route path="/categories/business/tax_planning" element={<TaxPlanning />} />
-        <Route path="/categories/business/GST" element={<GST />} />
-
-        <Route path="/categories/event_management/complete_event_management" element={<CompleteEventManagement />} />
-        <Route path="/categories/event_management/decoration" element={<Decoration />} />
-        <Route path="/categories/event_management/photography" element={<Photography />} />
-        <Route path="/categories/event_management/event_planning" element={<EventPlanning />} />
-        <Route path="/categories/event_management/food_and_catering" element={<FoodAndCatering />} />
-        <Route path="/categories/event_management/music_and_sound" element={<MusicAndSound />} />
-
-        <Route path="/categories/online_instructor/coding" element={<Coding />} />
-        <Route path="/categories/online_instructor/health_and_diet" element={<HealthAndDiet />} />
-        <Route path="/categories/online_instructor/cooking_and_baking" element={<CookingAndBaking />} />
-        <Route path="/categories/online_instructor/fitness_and_gym" element={<FitnessAndGym />} />
-        <Route path="/categories/online_instructor/music_instructor" element={<MusicInstructor />} />
-        <Route path="/categories/online_instructor/tuition_for_kids" element={<TuitionForKids />} /> */}
+        {data && (
+          <Route
+            path="/dashboard"
+            element={
+              data.role === "admin" ? (
+                <AdminHome />
+              ) : data.role === "professional" ? (
+                <UnderConstruction />
+              ) : (
+                <UserDashboard />
+              )
+            }
+          />
+        )}
 
         <Route path="/RegisterAsProfessional" element={<RegisterAsProfessional />} />
         <Route path="/ContactUs" element={<ContactUs />} />

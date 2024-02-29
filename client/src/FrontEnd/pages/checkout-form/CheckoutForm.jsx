@@ -4,6 +4,7 @@ import { Cities } from "../../Data/CityData";
 import { useParams } from "react-router-dom";
 import axios from "../../api/axios";
 import { useState } from "react";
+import {toast} from 'react-toastify';
 
 const CHECKOUT_FORM_URL = "http://localhost:5000/api/service/bookService";
 
@@ -56,7 +57,7 @@ const CheckoutForm = () => {
         }
       );
 
-      console.log(response.data);
+      toast.success("Service Booked Successfully");
     } catch (err) {
       if (!err?.response) {
         console.log("No Server Response");

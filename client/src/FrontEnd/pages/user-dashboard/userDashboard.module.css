@@ -1,0 +1,112 @@
+/* FILEPATH: /home/navin123/Desktop/QwickFix-Home-Service/client/src/FrontEnd/pages/user-dashboard/userDashboard.module.css */
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.infoCard,
+.ordersCard,
+.supportCard {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.infoCard h2,
+.ordersCard h2,
+.supportCard h2 {
+  font-size: 20px;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: green;
+}
+
+
+.loadButton{
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2rem 0 0 0;
+}
+
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.ordersTable th, .ordersTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ordersTable th {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+}
+
+.ordersTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ordersTable tr:hover {
+  background-color: #ddd;
+}
+
+
+.pendingOrder {
+  background-color: #ff5c5c; /* A lighter shade of red */
+  color: #fff; /* White text on the red background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  
+}

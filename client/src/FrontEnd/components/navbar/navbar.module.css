@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.hiddenLink {
+  display: none;
+}
+
 .navbar_links_logo {
   margin-right: 2rem;
 }
