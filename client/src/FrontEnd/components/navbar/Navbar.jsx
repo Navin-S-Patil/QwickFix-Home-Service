@@ -142,7 +142,7 @@ export const Navbar = () => {
                   className={navbarStyles.signIn}
                 >
                   {data.role ? (
-                    data.fullName
+                    <>{data.name}</>
                   ) : (
                     <Link to="/SignIn">Sign in</Link>
                   )}
