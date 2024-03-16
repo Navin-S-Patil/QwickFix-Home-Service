@@ -19,7 +19,11 @@ const EmployeeSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   address: { type: String, required: true },
   role: { type: String, required: true, default: "professional" },
-  rating: { type: Number, required: false, default: 5 , min: 0, max: 5},
+  rating: { type: Number, required: false, default: 5, min: 0, max: 5 },
+  services: [{
+    name: { type: String, required: true },
+    keyword: { type: String, required: true }
+  }]
 });
 
 

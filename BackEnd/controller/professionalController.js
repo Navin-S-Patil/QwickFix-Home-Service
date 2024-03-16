@@ -32,9 +32,9 @@ const registerProfessional = asyncHandler(async (req, res) => {
 
   const role = "professional";
 
-  const { name, phone, email, password , address } = req.body;
+  const { name, phone, email, password, address, selectedServices } = req.body;
 
-    console.log(req.body);
+  console.log(req.body);
 
   // Check if the username is already taken
   const userExists = await Employee.findOne({ email });
@@ -52,7 +52,8 @@ const registerProfessional = asyncHandler(async (req, res) => {
     password,
     phone,
     address,
-    role
+    role,
+    services: selectedServices
   });
 
 
@@ -63,6 +64,7 @@ const registerProfessional = asyncHandler(async (req, res) => {
       email: newProfessional.email,
       phone: newProfessional.phone,
       role: newProfessional.role,
+      services: newProfessional.services
     });
   } else {
     res.status(400);
@@ -86,4 +88,4 @@ const loggoutProfessional = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { authProfessional, registerProfessional, loggoutProfessional};
+module.exports = { authProfessional, registerProfessional, loggoutProfessional };
