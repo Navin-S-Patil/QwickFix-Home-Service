@@ -8,11 +8,12 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const userRoute = require("./routes/userRoute");
 const serviceRoute = require("./routes/serviceRoute");
 const professionalRoute = require("./routes/professionalRoute");
+const adminRoute = require("./routes/adminRoute");
 
-const corsOptions ={
-  origin:'http://localhost:3000', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
@@ -33,6 +34,7 @@ mongoose
 app.use("/api/service", serviceRoute);
 app.use("/api/users", userRoute);
 app.use("/api/professionals", professionalRoute);
+app.use("/api/admin", adminRoute);
 
 //custom error handler
 app.use(notFound);
